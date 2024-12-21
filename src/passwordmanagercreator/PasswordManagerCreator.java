@@ -1,42 +1,76 @@
 package passwordmanagercreator;
 
 import java.util.Random;
+import javax.swing.*;
 
 public class PasswordManagerCreator {
-    
+
     private static final String PASSWORD_RANGE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertuiopasdfghjklzxcvbnm@!#";
-    private static final int LIMIT = 20;
-    private static String password = "";
+    private int limit = 0;
+    private String password = "";
+    private String websiteName = "";
 
-    
-    public static String getPassword() {
-        return password;
-    }
+    public static void main(String[] args) {
+        PasswordManagerCreator manager = new PasswordManagerCreator();
 
-   
-    public static void setPassword(String password) {
-        PasswordManagerCreator.password = password;
-    }
-
-    
-    private static void generatePassword() {
-        Random random = new Random();
-        StringBuilder passwordBuilder = new StringBuilder(LIMIT);
-
+        manager.askForPasswordLength();
+        manager.askWebsiteName();
+        manager.generatePassword();
         
-        for (int i = 0; i < LIMIT; i++) {
+        System.out.println("Your App/Website Name: " + manager.getwebsiteName());
+        System.out.println("Your Generated Password: " + manager.getPassword());
+    }
+
+    private void generatePassword() {
+        Random random = new Random();
+        StringBuilder passwordBuilder = new StringBuilder(limit);
+
+        for (int i = 0; i < limit; i++) {
             int index = random.nextInt(PASSWORD_RANGE.length());
             passwordBuilder.append(PASSWORD_RANGE.charAt(index));
         }
 
-        
-        setPassword(passwordBuilder.toString());
+        password = passwordBuilder.toString();
     }
 
+    private void askForPasswordLength() {
+        try {
+            limit = Integer.parseInt(JOptionPane.showInputDialog("Please specify how long your password should be:"));
+            if (limit <= 0) {
+                JOptionPane.showMessageDialog(null, "Password length must be greater than 0 Try Again");
+                askForPasswordLength();
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid number.");
+            askForPasswordLength();
+        }
+    }
     
-    public static void main(String[] args) {
-        
-        generatePassword();
-        System.out.println("Generated Password: " + getPassword());
+    private void askWebsiteName(){
+     websiteName = JOptionPane.showInputDialog(null, "What is the website/app name");
+    }
+
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getwebsiteName() {
+        return websiteName;
+    }
+
+    public void setwebsiteName(String websiteURL) {
+        this.websiteName = websiteURL;
     }
 }
