@@ -18,7 +18,7 @@ public class PasswordManagerCreator {
         manager.generatePassword();
         
         System.out.println("Your App/Website Name: " + manager.getwebsiteName());
-        System.out.println("Your Generated Password: " + manager.getPassword());
+        System.out.println("Your Generated Password: " + manager.getPassword());//should try to improve this question
     }
 
     private void generatePassword() {
