@@ -5,7 +5,7 @@ import javax.swing.*;
 
 public class PasswordManagerCreator {
 
-    private static final String PASSWORD_RANGE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertuiopasdfghjklzxcvbnm@!#";
+    private static final String PASSWORD_RANGE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertuiopasdfghjklzxcvbnm@!#";//custom password range
     private int limit = 0;//size of the passord
     private String password = "";//generated password goes here
     private String websiteName = "";//name of the website or the URL goes here
