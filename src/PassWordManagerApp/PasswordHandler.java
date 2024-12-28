@@ -3,38 +3,42 @@ package PassWordManagerApp;
 import java.util.Random;
 import javax.swing.*;
 
+
 public class PasswordHandler {
-
-    private static final String PASSWORD_RANGE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertuiopasdfghjklzxcvbnm@!#";
-    private int limit = 0;
-    private String password = "";
-    private String websiteName_URL = "";
-    private String UserName = "";
-    private String Email = "";
+/*
+ For now i cant have the dtabase up but im planning to in the future   
     
-
+    
+    
+    
+    
+    */
+    private static final String PASSWORD_RANGE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789qwertuiopasdfghjklzxcvbnm@!#";
+    private int limit;
+    private String password;
+    private String websiteName_URL;
+    private String userName;
+    private String email;
 
     public static void main(String[] args) {
         PasswordHandler manager = new PasswordHandler();
-        
-        while(true){
-           
-        
+
+       
         manager.askForPasswordLength();
         manager.askWebsiteName();
         manager.generatePassword();
         manager.askUsername();
         manager.askEmail();
-        
-JOptionPane.showMessageDialog(null, "Your App/Website Name: " + manager.getWebsiteName_URL(), "Information", JOptionPane.INFORMATION_MESSAGE);
-JOptionPane.showMessageDialog(null, "Your Generated Password: " + manager.getPassword(), "Information", JOptionPane.INFORMATION_MESSAGE);
-JOptionPane.showMessageDialog(null, "Your Email: " + manager.getEmail(), "Information", JOptionPane.INFORMATION_MESSAGE);
-JOptionPane.showMessageDialog(null, "Your Username: " + manager.getUserName(), "Information", JOptionPane.INFORMATION_MESSAGE);
 
+      
+        JOptionPane.showMessageDialog(null, "Your App/Website Name: " + manager.getWebsiteName_URL(), "Information", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Your Generated Password: " + manager.getPassword(), "Information", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Your Email: " + manager.getEmail(), "Information", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Your Username: " + manager.getUserName(), "Information", JOptionPane.INFORMATION_MESSAGE);
 
-        
-        }
-       
+        // Save to database
+        DatabaseHandler dbHandler = new DatabaseHandler();
+        dbHandler.savePasswordDetails(manager.getPassword(), manager.getWebsiteName_URL(), manager.getUserName(), manager.getEmail());
     }
 
     private void generatePassword() {
@@ -50,76 +54,66 @@ JOptionPane.showMessageDialog(null, "Your Username: " + manager.getUserName(), "
     }
 
     private void askForPasswordLength() {
-        try {
-            limit = Integer.parseInt(JOptionPane.showInputDialog("Please specify how long your password should be:"));
-            if (limit <= 0) {
-                JOptionPane.showMessageDialog(null, "Password length must be greater than 0 Try Again");
-                askForPasswordLength();
+        while (true) {
+            try {
+                limit = Integer.parseInt(JOptionPane.showInputDialog("Please specify how long your password should be (1-30):"));
+                if (limit > 0 && limit <= 30) {
+                    break;
+                }
+                JOptionPane.showMessageDialog(null, "Password length must be between 1 and 30. Try again.");
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid number.");
             }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Please enter a valid number.");
-            askForPasswordLength();
         }
     }
-    
-    private void askWebsiteName(){
-     websiteName_URL = JOptionPane.showInputDialog(null, "What is the website/app/URL name");
+
+    private void askWebsiteName() {
+        while (true) {
+            websiteName_URL = JOptionPane.showInputDialog(null, "What is the website/app/URL name?");
+            if (websiteName_URL != null && !websiteName_URL.trim().isEmpty()) {
+                break;
+            }
+            JOptionPane.showMessageDialog(null, "Website name cannot be empty. Try again.");
+        }
     }
-    private void askUsername(){
-     UserName = JOptionPane.showInputDialog(null, "What is the Username");
+
+    private void askUsername() {
+        while (true) {
+            userName = JOptionPane.showInputDialog(null, "What is the Username?");
+            if (userName != null && !userName.trim().isEmpty()) {
+                break;
+            }
+            JOptionPane.showMessageDialog(null, "Username cannot be empty. Try again.");
+        }
     }
-    private void askEmail(){
-     Email = JOptionPane.showInputDialog(null, "What is the associated Email");
+
+    private void askEmail() {
+        while (true) {
+            email = JOptionPane.showInputDialog(null, "What is the associated Email?");
+            if (email != null && !email.trim().isEmpty()) {
+                break;
+            }
+            JOptionPane.showMessageDialog(null, "Email cannot be empty. Try again.");
+        }
     }
-    
-    
-    
-    
-    
 
     public int getLimit() {
         return limit;
-    }
-
-    public void setLimit(int limit) {
-        this.limit = limit;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    
-    
-    
-    
     public String getWebsiteName_URL() {
         return websiteName_URL;
     }
 
-    public void setWebsiteName_URL(String websiteNameURL) {
-        this.websiteName_URL = websiteName_URL;
-    }
-
     public String getUserName() {
-        return UserName;
-    }
-
-    public void setUserName(String UserName) {
-        this.UserName = UserName;
+        return userName;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
-
-    public void setEmail(String Email) {
-        this.Email = Email;
-    }
-    
-
 }
