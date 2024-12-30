@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Simphwe%20Khumalo/Documents/NetBeansProjects/PasswordManagerCreator/src/PassWordManagerApp/PasswordHandler.java</file>
+            <file>file:/C:/Users/Simphwe%20Khumalo/Documents/NetBeansProjects/PasswordManagerCreatorAp/src/passwordmanagercreatorap/MainApp.java</file>
+            <file>file:/C:/Users/Simphwe%20Khumalo/Documents/NetBeansProjects/PasswordManagerCreatorAp/src/passwordmanagercreatorap/PassWordManager.fxml</file>
+            <file>file:/C:/Users/Simphwe%20Khumalo/Documents/NetBeansProjects/PasswordManagerCreatorAp/src/passwordmanagercreatorap/PasswordEntry.java</file>
+            <file>file:/C:/Users/Simphwe%20Khumalo/Documents/NetBeansProjects/PasswordManagerCreatorAp/src/passwordmanagercreatorap/MyController.java</file>
         </group>
     </open-files>
 </project-private>
