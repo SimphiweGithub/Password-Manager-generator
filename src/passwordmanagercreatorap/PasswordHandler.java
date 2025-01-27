@@ -7,7 +7,7 @@ import javax.swing.*;
 
 public class PasswordHandler {
 /*
- For now i cant have the dtabase up but im planning to in the future   
+ For now i cant have the dtabase up for public use but im planning to in the future   
     
     
     
