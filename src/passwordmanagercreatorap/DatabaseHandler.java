@@ -1,7 +1,6 @@
 
 package passwordmanagercreatorap;
 import java.sql.*;
-import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -14,7 +13,7 @@ public class DatabaseHandler {
     public void savePasswordDetails(String password, String websiteName, String userName, String email) {
         try (Connection connector = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
              PreparedStatement preparedStatement = connector.prepareStatement(
-                     "INSERT INTO PasswordsAndDetails(_Password, _websiteName_URL, _UserName, _Email) VALUES (?, ?, ?, ?)");) {
+                     "INSERT INTO PasswordsAndDetails(_Password, _websiteName_URL, _UserName, _Email) VALUES (?, ?, ?, ?)")) {
 
             //java doesnt play nice makes me see python in a new light
             preparedStatement.setString(1, password);
